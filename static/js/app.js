@@ -23,3 +23,11 @@ data.forEach(function(alienData) {
     });
 });
 
+//select buttons and form
+var button1 = d3.select("#filter-btn");
+var form = d3.select("form");
+
+//create event handlers
+button1.on("click", runEnter);
+form.on("click",runEnter);
+
