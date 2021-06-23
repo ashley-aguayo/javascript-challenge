@@ -15,8 +15,11 @@ data.forEach(function(alienData) {
 data.forEach(function(alienData) {
     console.log(alienData);
     var row = tbody.append("tr");
-});
-//Use Object entries 
-Object.entries(alienData).forEach(function([key, value]) {
+
+    Object.entries(alienData).forEach(function([key, value]) {
     console.log(key, value);
+        //Append a cell to the row
+        var cell = row.append("td");
+    });
 });
+
