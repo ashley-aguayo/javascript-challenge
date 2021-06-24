@@ -4,9 +4,7 @@ console.log(tableData);
 // YOUR CODE HERE!
 //creat reference for table body
 var tbody = d3.select("tbody");
-console.log(tbody);
-//var inputDate = d3.select(#datetime);
-//var inputCity = d3.select(#city);
+//console.log(tbody);
 
 //loop through data
 data.forEach(function(alienData) {
@@ -27,19 +25,34 @@ data.forEach(function(alienData) {
 });
 
 //select buttons and form
-var button1 = d3.select("#filter-btn");
-var inputField = d3.select('#input-field');
+var button = d3.select("#filter-btn");
 var form = d3.select("form");
 
 //create event handlers
-button1.on("click", runEnter);
-form.on("click",runEnter);
+button.on("click", runEnter);
+//form.on("submit",runEnter);
 
 //complete the event handler function form
 function runEnter() {
     d3.event.preventDefault();
+    tbody.html("");
 
-    var inputElement = d3.select(".form-control");
-    var inputValue = inputElement.property("value");
-    var results = tableData.filter(data => data.datetime);
-};
+//create var for the input elements and values
+
+var inputElement = d3.select(".form-control");
+var inputValue = inputElement.property("value");
+//CREATE A FILTER TO FIND RESULTS BY INPUT DATE
+
+var results = tableData.filter(tableData => tableData.datetime === inputValue);
+
+//provide the results of and append the Table based on input date
+results.forEach(function(dateResults) { 
+    var row = tbody.append("tr");
+    console.log(results);
+    Object.entries(dateResults).forEach(function([key, value]){
+    console.log(key,value);
+        var cell = tbody.append("td");
+        cell.text(value);
+    });
+});
+}
